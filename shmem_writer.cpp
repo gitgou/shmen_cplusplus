@@ -37,6 +37,12 @@ int main(void)
 	char* pBuf= NULL;
 	//创建共享内存
 	iShmID = shmget(SHM_KEY, sizeof(shmseg), 0644|IPC_CREAT);//0644有什么含义
+	/* 
+	 * 0为八进制标识符, 644分别表示归属者、同组者、其它权限: 读写执行 110 010 010
+	 * IPC_CREAT 表示创建一个新的shmem 
+	 * IPC_EXCL
+	 * 表示将该SHM_KEY附着一个已经存在的共享内存.若不存在，则返回错误码
+	 * */
 	if(iShmID == -1)
 	{
 		perror("Shared memoey");
